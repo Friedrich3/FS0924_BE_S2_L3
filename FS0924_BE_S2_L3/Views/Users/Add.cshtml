@@ -1,5 +1,6 @@
 ﻿@using FS0924_BE_S2_L3.Models.ViewModel
-@model CinemaListViewModel;
+@model UtenteAddViewModel;
+
 
 @{
 	ViewData["Title"] = "User";
@@ -10,27 +11,27 @@
 	<form method="post" asp-controller="Users" asp-action="Add">
 		<div class="mb-3">
 			<label for="inputName" class="form-label">Nome</label>
-			<input type="text" class="form-control" id="inputName" required>
+			<input type="text" asp-for="Nome" class="form-control" id="inputName" required>
 		</div>
 		<div class="mb-3">
 			<label for="inputSurname" class="form-label">Cognome</label>
-			<input type="text" class="form-control" id="inputSurname" required>
+			<input type="text" asp-for="Cognome" class="form-control" id="inputSurname" required>
 		</div>
 
 		<div class="mb-4">
 			<label for="Sala" class="form-label">Sala</label>
-			<select class="form-select" aria-label="Default select example" id="Sala" required>
+			<select class="form-select" aria-label="Default select example" id="Sala" asp-for="Sala" required>
 				<option selected>---Seleziona una sala---</option>
-				@foreach (var e in Model.Theatre)
+				@foreach (var e in ViewBag.Cinema.Theatre)
 				{
-					<option value="@e.IdSala">@e.NomeSala</option>
+					<option value="@e.IdSala" >@e.NomeSala</option>
 				}
 			</select>
 		</div>
 
 
 		<div class="mb-3 form-check fs-4">
-			<input type="checkbox" class="form-check-input" id="CheckIntero">
+			<input type="checkbox" class="form-check-input" id="CheckIntero" asp-for="IsReduced">
 			<label class="form-check-label" for="CheckIntero">Biglietto Ridotto</label>
 		</div>
 

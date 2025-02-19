@@ -2,6 +2,6 @@
 {
     public class CinemaListViewModel
     {
-        public List<Sala> Theatre {  get; set; } 
+        public List<Sala> Theatre {  get; set; } = new List<Sala>();
     }
 }

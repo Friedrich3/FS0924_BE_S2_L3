@@ -7,36 +7,41 @@
 
 
 <div class="text-center">
-    <h1 class="display-4">LISTA SALE CINEMA </h1>
-    <a class="btn btn-outline-success" asp-controller="Users" asp-action="Add">AGGIUNGI UN NUOVO CLIENTE</a>
-    <div class="container-fluid">
-        <div class="row">
-            @foreach (var element in Model.Theatre){
-                <div class="col-4">
-                    <h2>SALA @element.NomeSala</h2>
-                     <div>
-                         <table>
-                             <tr>
-                             <th>Nome</th>
-                             <th>Cognome</th>
-                             <th>Ridotto</th>
-                             </tr>
-                             @foreach(var user in Model.Theatre.)
-                         </table>
-                     </div>
-                </div>
+	<h1 class="display-4">LISTA SALE CINEMA </h1>
+	<a class="btn btn-outline-success" asp-controller="Users" asp-action="Add">AGGIUNGI UN NUOVO CLIENTE</a>
+	<div class="container-fluid">
+		<div class="row">
+			@foreach (var element in Model.Theatre)
+			{
+				<div class="col-4">
+					<h2>SALA @element.NomeSala</h2>
+					<div>
+						<table class="table table-striped">
+							<tr>
+								<th>Nome</th>
+								<th>Cognome</th>
+								<th>Ridotto</th>
+							</tr>
+							
+							
+								 @foreach(var utente in element.ListaUtenti){
+									<tr>
+										<td>@utente.Nome</td>
+										<td>@utente.Cognome</td>
+										@if(utente.IsReduced){
+												<td>Prezzo: 5.99$</td>			
+										}else{
+											<td>Prezzo: 10.99$</td>
+										}
+									</tr>
+								 }
+							
+                             
+						</table>
+					</div>
+				</div>
 
-            }
-            @* <div class="col-4">
-                <h2>SALA NORD</h2>
-
-            </div>
-            <div class="col-4">
-                <h2>SALA EST</h2>
-            </div>
-            <div class="col-4">
-                <h2>SALA SUD</h2>
-            </div> *@
-        </div>
-    </div>
+			}
+		</div>
+	</div>
 </div>

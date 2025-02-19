@@ -4,6 +4,6 @@
     {
         public Guid IdSala { get; set; } 
         public string NomeSala { get; set; }
-        public List<Utente> ListaUtenti { get; set; }
+        public List<Utente> ListaUtenti { get; set; } = new List<Utente>();
     }
 }

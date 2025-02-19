@@ -26,11 +26,14 @@ namespace FS0924_BE_S2_L3.Controllers
 
         public IActionResult Add()
         {
-            var cinema = new CinemaListViewModel()
+            var user = new UtenteAddViewModel();
+           
+            //ViewBag.Utente = new UtenteAddViewModel();
+            ViewBag.Cinema = new CinemaListViewModel()
             {
                 Theatre = ListaSale
             };
-            return View(cinema);
+            return View(user);
         }
 
         [HttpPost]
@@ -43,13 +46,14 @@ namespace FS0924_BE_S2_L3.Controllers
             var newUtente = new Utente()
             {
                 Id = Guid.NewGuid(),
+                Nome = utenteAdd.Nome,
                 Cognome = utenteAdd.Cognome,
                 Sala = utenteAdd.Sala,
                 IsReduced = utenteAdd.IsReduced
 
             };
             
-            var lista = ListaSale.FirstOrDefault(sala => sala.NomeSala == utenteAdd.Sala);
+            var lista = ListaSale.FirstOrDefault(sala => sala.IdSala.ToString() == utenteAdd.Sala);
             lista.ListaUtenti.Add(newUtente);
 
 
