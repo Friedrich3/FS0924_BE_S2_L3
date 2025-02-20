@@ -54,6 +54,7 @@ namespace FS0924_BE_S2_L3.Controllers
             };
 
             var lista = ListaSale.FirstOrDefault(sala => sala.IdSala.ToString() == utenteAdd.Sala);
+            lista.Posti -= 1;
             lista.ListaUtenti.Add(newUtente);
 
 
@@ -74,6 +75,10 @@ namespace FS0924_BE_S2_L3.Controllers
             }
 
             var userRemoved = UserList.ListaUtenti.Remove(user);
+            if (userRemoved)
+            {
+                UserList.Posti += 1;
+            }
         
             return RedirectToAction("Index");
         }

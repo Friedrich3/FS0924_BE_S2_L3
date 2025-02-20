@@ -22,11 +22,17 @@
 			<label for="Sala" class="form-label">Sala</label>
 			<select class="form-select" aria-label="Default select example" id="Sala" asp-for="Sala" required>
 				<option selected>---Seleziona una sala---</option>
-				@foreach (var e in ViewBag.Cinema.Theatre)
+				@foreach (Sala e in ViewBag.Cinema.Theatre)
 				{
-					<option value="@e.IdSala" >@e.NomeSala</option>
+					if(e.Posti != 0)
+					{
+						<option  value="@e.IdSala">@e.NomeSala</option>
+					}
+					else{
+						<option value="@e.IdSala" disabled>@e.NomeSala</option>
+					}
 				}
-			</select>
+			</select> 
 		</div>
 
 

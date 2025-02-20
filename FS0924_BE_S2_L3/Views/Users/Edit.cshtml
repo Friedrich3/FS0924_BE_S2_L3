@@ -24,7 +24,7 @@
 				<option selected>---Seleziona una sala---</option>
 				@foreach (var e in ViewBag.Cinema.Theatre)
 				{
-						<option value="@e.IdSala" >@e.NomeSala</option>
+						<option value="@e.IdSala" disabled=@e.isOpen >@e.NomeSala</option>
 				}
 			</select>
 		</div>
