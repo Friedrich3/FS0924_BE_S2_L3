@@ -61,27 +61,7 @@ namespace FS0924_BE_S2_L3.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet("User/Delete/{sala:guid}/{Id:guid}")]
-        public IActionResult Delete(Guid id, Guid sala)
-        {                  
-            //FACCIO UNA RICERCA PER LISTA E IN QUELLA LISTA RICERCO L'UTENTE
-            var UserList = ListaSale.FirstOrDefault(lista => lista.IdSala == sala) as Sala;
-            var user = UserList!.ListaUtenti.FirstOrDefault(u => u.Id == id);
-
-            //ESEGUIRE SEMPRE UN CONTROLLO SE E' NULL QUANDO SI CERCA QUALCOSA
-            if (user == null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            var userRemoved = UserList.ListaUtenti.Remove(user);
-            if (userRemoved)
-            {
-                UserList.Posti += 1;
-            }
-        
-            return RedirectToAction("Index");
-        }
+       
 
         [HttpGet("User/Edit/{sala:guid}/{Id:guid}")]
         public IActionResult Edit(Guid sala, Guid id)
@@ -126,6 +106,28 @@ namespace FS0924_BE_S2_L3.Controllers
             user.Cognome = editModel.Cognome;
             user.Sala = editModel.Sala;
             user.IsReduced = editModel.IsReduced;
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("User/Delete/{sala:guid}/{Id:guid}")]
+        public IActionResult Delete(Guid id, Guid sala)
+        {
+            //FACCIO UNA RICERCA PER LISTA E IN QUELLA LISTA RICERCO L'UTENTE
+            var UserList = ListaSale.FirstOrDefault(lista => lista.IdSala == sala) as Sala;
+            var user = UserList!.ListaUtenti.FirstOrDefault(u => u.Id == id);
+
+            //ESEGUIRE SEMPRE UN CONTROLLO SE E' NULL QUANDO SI CERCA QUALCOSA
+            if (user == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var userRemoved = UserList.ListaUtenti.Remove(user);
+            if (userRemoved)
+            {
+                UserList.Posti += 1;
+            }
 
             return RedirectToAction("Index");
         }
