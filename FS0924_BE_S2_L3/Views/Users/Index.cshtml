@@ -3,12 +3,14 @@
 
 @{
 	ViewData["Title"] = "Sale";
+	
 }
 
 
 <div class="text-center">
 	<h1 class="display-4">LISTA SALE CINEMA </h1>
 	<a class="btn btn-outline-success" asp-controller="Users" asp-action="Add">AGGIUNGI UN NUOVO CLIENTE</a>
+	
 	<div class="container-fluid">
 		<div class="row">
 			@foreach (var element in Model.Theatre)
@@ -21,6 +23,7 @@
 								<th>Nome</th>
 								<th>Cognome</th>
 								<th>Ridotto</th>
+								<th>🛠</th>
 							</tr>
 							
 							
@@ -28,11 +31,14 @@
 									<tr>
 										<td>@utente.Nome</td>
 										<td>@utente.Cognome</td>
-										@if(utente.IsReduced){
-												<td>Prezzo: 5.99$</td>			
-										}else{
-											<td>Prezzo: 10.99$</td>
-										}
+										<td>@(utente.IsReduced? "Prezzo: 5.99$" : "Prezzo: 10.99$")</td>
+										<td><div>
+											@* <a class="btn btn-outline-warning p-0 px-1">🔧</a> *@
+											<a asp-controller="Users" asp-action="Edit" asp-route-sala=@element.IdSala asp-route-id=@utente.Id class="btn btn-outline-warning p-0 px-1">🔧</a>
+											<a asp-controller="Users" asp-action="Delete" asp-route-sala=@element.IdSala asp-route-id=@utente.Id class="btn btn-outline-danger p-0 px-1">❌</a>
+										</div></td>
+														
+	
 									</tr>
 								 }
 							
